@@ -1,4 +1,4 @@
-package com.delivernow.back1-creacion-pedidos;
+package com.delivernow.back1_creacion_pedidos.entities-creacion-pedidos;
 
 import javax.persistence.*;
 

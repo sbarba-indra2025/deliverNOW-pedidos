@@ -1,4 +1,4 @@
-package com.delivernow.back1-creacion-pedidos;
+package com.delivernow.back1_creacion_pedidos.controllers-creacion-pedidos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

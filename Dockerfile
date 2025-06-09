@@ -4,10 +4,19 @@ FROM openjdk:17-alpine
 WORKDIR /app
 
 # copia los archivos del proyecto
-COPY target/*.jar app.jar
+COPY . .
 
-# expone el puerto para nginx
+# instala Maven si no está presente
+RUN apk add --no-cache maven
+
+# si no existe el archivo de Maven Wrapper, lo crea
+RUN if [ ! -f "./mvnw" ]; then mvn -N io.takari:maven:wrapper; fi
+
+# si no existe el directorio 'target' o el JAR, compila el proyecto
+RUN if [ ! -d "target" ] || [ ! -f "target/*.jar" ]; then ./mvnw clean package; fi
+
+# expone el puerto
 EXPOSE 8080
 
-# inicia spring boot
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# inicia el proyecto de spring boot
+ENTRYPOINT ["java", "-jar", "target/*.jar"]

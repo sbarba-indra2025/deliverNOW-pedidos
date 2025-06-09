@@ -1,4 +1,4 @@
-package com.delivernow.back1creacionpedidos;
+package com.delivernow.back1_creacion_pedidos.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
