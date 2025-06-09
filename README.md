@@ -42,6 +42,21 @@ Nota: Para ejecutar todos los servicios de la aplicación (frontend + backend + 
 
 ---
 
+## Generar Maven Wrapper
+
+1. **Instalar Maven** siguiendo las instrucciones en la [página oficial](https://maven.apache.org/install.html).
+   
+2. Abrir la terminal en la raíz del repositorio.
+
+3. Ejecutar el siguiente comando:
+
+   ```bash
+   mvn -N io.takari:maven:wrapper
+
+Este comando creará la carpeta .mvn y los archivos necesarios (mvnw, mvnw.cmd y los archivos dentro de .mvn/wrapper) para usar Maven Wrapper.
+
+---
+
 ## Compilación del JAR
 
 Para compilar el archivo `JAR` de forma independiente (sin depender de otros servicios), puede hacerse con **Maven** de la siguiente forma:
