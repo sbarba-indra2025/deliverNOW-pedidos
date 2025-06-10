@@ -4,10 +4,13 @@ package com.delivernow.back1_creacion_pedidos.entities;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.delivernow.back1_creacion_pedidos.utils.LongListConverter;
 
 @Entity
 public class Pedido {
@@ -22,7 +25,8 @@ public class Pedido {
     @Column(name = "proveedor_id")
     private Long proveedorId;
 
-    @Column(name = "productos")    
+    @Convert(converter = LongListConverter.class)
+    @Column(name = "productos", columnDefinition = "bigint[]")
     private List<Long> productosIds;  // lista de ids de productos seleccionados
 
     @Column(name = "usuario_id")
