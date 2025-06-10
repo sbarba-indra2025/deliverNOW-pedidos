@@ -1,7 +1,9 @@
-package com.delivernow.back1_creacion_pedidos.entities-creacion-pedidos;
+package com.delivernow.back1_creacion_pedidos.entities;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Proveedor {
@@ -12,9 +14,6 @@ public class Proveedor {
 
     private String nombre;
     private String categoria; // 'comida', 'supermercado'
-
-    @OneToMany(mappedBy = "proveedor")
-    private List<Producto> productos;
 
     // Constructor vacío
     public Proveedor() {
@@ -49,13 +48,5 @@ public class Proveedor {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 }

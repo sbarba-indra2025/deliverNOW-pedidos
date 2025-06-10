@@ -1,9 +1,12 @@
-package com.delivernow.back1_creacion_pedidos.controllers-creacion-pedidos;
+package com.delivernow.back1_creacion_pedidos.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.delivernow.back1_creacion_pedidos.entities.Usuario;
+import com.delivernow.back1_creacion_pedidos.repositories.UsuarioRepository;
 
 import java.util.Map;
 import java.util.Optional;
@@ -21,15 +24,15 @@ public class AuthController {
         String password = loginData.get("password");
 
         if (username == null || password == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("success", false, "message", "Faltan credenciales"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("success", false, "message", "Faltan credenciales", "usuarioId", null));
         }
 
-        Optional<Usuario> usuario = usuarioRepository.findByNombreUsuarioAndContrasena(username, password);
+        Optional<Usuario> usuario = usuarioRepository.findByUsernameAndPassword(username, password);
 
         if (usuario.isPresent()) {
-            return ResponseEntity.ok(Map.of("success", true, "message", "Usuario autenticado"));
+            return ResponseEntity.ok(Map.of("success", true, "message", "Usuario autenticado", "usuarioId", usuario.get().getId()));
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("success", false, "message", "Credenciales incorrectas"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("success", false, "message", "Credenciales incorrectas", "usuarioId", null));
         }
     }
 }

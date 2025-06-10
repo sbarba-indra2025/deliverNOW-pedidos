@@ -1,6 +1,11 @@
-package com.delivernow.back1_creacion_pedidos.entities-creacion-pedidos;
+package com.delivernow.back1_creacion_pedidos.entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 @Entity
 public class Producto {
@@ -12,13 +17,8 @@ public class Producto {
     private String nombre;
     private double precio;
 
-    @ManyToOne
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-
-    @ManyToOne
-    @JoinColumn(name = "proveedor_id", nullable = false)
-    private Proveedor proveedor;
+    @Column(name = "proveedor_id")
+    private Long proveedorId;
 
     // constructor vacío
     public Producto() {
@@ -56,19 +56,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public Long getProveedorId() {
+        return proveedorId;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Long getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Long proveedor) {
-        this.proveedor = proveedor;
+    public void setProveedorId(Long proveedorId) {
+        this.proveedorId = proveedorId;
     }
 }
